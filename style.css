@@ -303,6 +303,14 @@ body {
    align-items: flex-start;
    gap: 10px;
 }
+.devplan-sig-left {
+   flex: 0 0 16.666%;
+}
+.devplan-sig-right {
+   flex: 1;
+   min-width: 0;
+   text-align: center;
+}
 .devplan-sig-left p,
 .devplan-sig-right p {
    margin: 0 0 24px;
