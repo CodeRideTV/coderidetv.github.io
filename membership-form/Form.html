@@ -17,6 +17,9 @@
          <button class="btn" type="button" id="generate-pdf-btn">
             Generate PDF
          </button>
+         <button class="btn secondary" type="button" id="save-draft-btn">
+            Save draft
+         </button>
          <button
             class="btn secondary"
             type="button"
@@ -272,6 +275,58 @@
             margin-right: 4px;
          }
       </style>
+      <script>
+         (function () {
+            var STORAGE_KEY = 'farmer-form-draft';
+            var form = document.getElementById('form');
+
+            function saveFormDraft() {
+               if (!form) return;
+               var inputs = form.querySelectorAll('input');
+               var data = { count: inputs.length, fields: [] };
+               inputs.forEach(function (input) {
+                  var type = (input.type || 'text').toLowerCase();
+                  data.fields.push({
+                     value: input.value || '',
+                     checked: type === 'checkbox' || type === 'radio' ? input.checked : false
+                  });
+               });
+               try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+            }
+
+            function loadFormDraft() {
+               if (!form) return;
+               try {
+                  var raw = localStorage.getItem(STORAGE_KEY);
+                  if (!raw) return;
+                  var data = JSON.parse(raw);
+                  var inputs = form.querySelectorAll('input');
+                  if (data.fields && data.fields.length === inputs.length) {
+                     data.fields.forEach(function (f, i) {
+                        inputs[i].value = f.value != null ? f.value : '';
+                        if (inputs[i].type === 'checkbox' || inputs[i].type === 'radio') {
+                           inputs[i].checked = !!f.checked;
+                        }
+                     });
+                  }
+               } catch (e) {}
+            }
+
+            loadFormDraft();
+            window.addEventListener('beforeprint', saveFormDraft);
+            document.getElementById('generate-pdf-btn').addEventListener('click', saveFormDraft);
+            document.getElementById('save-draft-btn').addEventListener('click', function () {
+               saveFormDraft();
+               var btn = document.getElementById('save-draft-btn');
+               var t = btn.textContent;
+               btn.textContent = 'Saved';
+               setTimeout(function () { btn.textContent = t; }, 1500);
+            });
+            form.addEventListener('reset', function () {
+               try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+            });
+         })();
+      </script>
       <script>
          document.getElementById('generate-pdf-btn').addEventListener('click', function () {
             var sheet = document.querySelector('.sheet');
