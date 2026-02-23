@@ -1,1 +1,243 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Farmer Registration Form</title>
+      <link rel="stylesheet" href="style.css" />
+   </head>
 
+   <body>
+      <div class="toolbar">
+         <button class="btn" type="button" onclick="window.print()">
+            Print
+         </button>
+         <button
+            class="btn secondary"
+            type="button"
+            onclick="document.getElementById('form').reset()">
+            Reset
+         </button>
+      </div>
+
+      <div class="sheet">
+         <form id="form">
+            <div class="form-header">
+               <h1>FARMER APPLICATION FOR COOPERATIVE MEMBERSHIP</h1><br>
+               <div class="section-header">Personal Information</div>
+            </div> </form>
+
+            <div class="grid">
+               <div class="c4">
+                  <label>Surname</label>
+                  <input type="text" />
+               </div>
+               <div class="c4">
+                  <label>First Name</label>
+                  <input type="text" />
+               </div>
+               <div class="c4">
+                  <label>Middle name</label>
+                  <input type="text" />
+               </div>
+               <div class="c3">
+                  <label>Gender</label>
+                  <div class="checks" style="padding-top: 6px">
+                     <label><input type="radio" name="gender" /> Male</label>
+                     <label><input type="radio" name="gender" /> Female</label>
+                  </div>
+               </div>
+               <div class="c3">
+                  <label>Date of Birth (mm/dd/yyyy)</label>
+                  <input type="date" />
+               </div>
+               <div class="c6">
+                  <label>Marital Status</label>
+                  <div class="checks" style="padding-top: 6px">
+                     <label><input type="radio" name="marital" /> Single</label>
+                     <label
+                        ><input type="radio" name="marital" /> Married</label
+                     >
+                     <label
+                        ><input type="radio" name="marital" /> Widowed</label
+                     >
+                  </div>
+               </div>
+               <div class="c6">
+                  <label>Name of Spouse</label>
+                  <input type="text" />
+               </div>
+
+               <div class="f">
+                  <label>Present Address</label>
+                  <input type="text" />
+               </div>
+               <div class="f">
+                  <label>Permanent Address</label>
+                  <input type="text" />
+               </div>
+
+               <div class="c4">
+                  <label>Mobile Number</label>
+                  <input type="tel" />
+               </div>
+               <div class="c4">
+                  <label>Home Phone Number</label>
+                  <input type="tel" />
+               </div>
+               <div class="c4">
+                  <label>Government ID No. (SSS/GSIS/PhilHealth)</label>
+                  <input type="text" />
+               </div>
+
+               <div class="c6">
+                  <label>Bank Account No. (if any)</label>
+                  <input type="text" />
+               </div>
+               <div class="c6">
+                  <label>Email Address</label>
+                  <input type="email" />
+               </div>
+            </div>
+
+            <div class="section-header">Farm / Livelihood Information</div>
+            <div class="grid">
+               <div class="c4">
+                  <label>Barangay / Sitio</label>
+                  <input type="text" />
+               </div>
+               <div class="c4">
+                  <label>Farm / Location Address</label>
+                  <input type="text" />
+               </div>
+               <div class="c4">
+                  <label>Land area (e.g. sq.m / hectare)</label>
+                  <input type="text" />
+               </div>
+               <div class="f">
+                  <label>Main livelihood</label>
+                  <div class="checks" style="padding-top: 4px">
+                     <label><input type="checkbox" /> Crops</label>
+                     <label><input type="checkbox" /> Livestock</label>
+                     <label><input type="checkbox" /> Poultry</label>
+                     <label><input type="checkbox" /> Fishing</label>
+                     <label><input type="checkbox" /> Mixed</label>
+                  </div>
+               </div>
+               <div class="f">
+                  <label>Land tenure</label>
+                  <div class="checks" style="padding-top: 4px">
+                     <label><input type="checkbox" /> Owned</label>
+                     <label><input type="checkbox" /> Leased</label>
+                     <label><input type="checkbox" /> Communal</label>
+                     <label><input type="checkbox" /> Other</label>
+                  </div>
+               </div>
+            </div>
+
+            <div class="section-header">Application Type</div>
+            <div class="grid grid-center">
+               <div class="f checks">
+                  <label
+                     ><input type="checkbox" name="apptype" /> New Member</label
+                  >
+                  <label
+                     ><input type="checkbox" name="apptype" />
+                     Re-Activate</label
+                  >
+                  <label
+                     ><input type="checkbox" name="apptype" /> Update
+                     Records</label
+                  >
+               </div>
+               <div class="c6">
+                  <label>Transfer From</label>
+                  <input type="text" />
+               </div>
+               <div class="c6">
+                  <label>Transfer To</label>
+                  <input type="text" />
+               </div>
+            </div>
+
+            <div class="section-header">
+               Beneficiaries (Surname, First name, Middle name)
+            </div>
+            <table>
+               <thead>
+                  <tr>
+                     <th style="width: 24px">#</th>
+                     <th>Fullname (Last, First, Middle)</th>
+                     <th style="width: 100px">Date of Birth (mm/dd/yyyy)</th>
+                     <th style="width: 100px">Relationship</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>1</td>
+                     <td><input type="text" /></td>
+                     <td><input type="date" /></td>
+                     <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                     <td>2</td>
+                     <td><input type="text" /></td>
+                     <td><input type="date" /></td>
+                     <td><input type="text" /></td>
+                  </tr>
+                  <tr>
+                     <td>3</td>
+                     <td><input type="text" /></td>
+                     <td><input type="date" /></td>
+                     <td><input type="text" /></td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="note muted">
+               <em
+                  >If no beneficiaries nominated, the Cooperative will follow
+                  legal heirs per hierarchy rule: spouse for married, parents
+                  for single.</em
+               >
+            </div>
+
+            <div class="section-header">Agreement</div>
+            <div class="note">
+               I declare that the information above is correct. I have read and
+               understood the policies and rules of the Cooperative and agree to
+               its terms and conditions. I consent to the use of my data per the
+               Cooperative’s Data Privacy Policy.
+            </div>
+            <div class="sigrow">
+               <div>
+                  <label>Signature over Printed Name</label>
+                  <input type="text" />
+               </div>
+               <div>
+                  <label>Date (mm/dd/yyyy)</label>
+                  <input type="date" />
+               </div>
+            </div>
+
+            <div class="section-header">
+               Coop Approval (For Office Use Only)
+            </div>
+            <div class="grid">
+               <div class="c4">
+                  <label>Registration ID No.</label>
+                  <input type="text" />
+               </div>
+               <div class="c4">
+                  <label>Date Approved (mm/dd/yyyy)</label>
+                  <input type="date" />
+               </div>
+               <div class="c4">
+                  <label>Received by</label>
+                  <input type="text" />
+               </div>
+            </div>
+         </form>
+      </div>
+
+   </body>
+</html>
