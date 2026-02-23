@@ -8,7 +8,10 @@
    </head>
 
    <body>
-      <div class="site-nav-placeholder" data-current="farmer" data-folder="membership-form"></div>
+      <div
+         class="site-nav-placeholder"
+         data-current="farmer"
+         data-folder="membership-form"></div>
       <script src="../nav.js"></script>
       <div class="toolbar">
          <button class="btn" type="button" onclick="window.print()">
@@ -31,7 +34,8 @@
       <div class="sheet">
          <form id="form">
             <div class="form-header">
-               <h1>FARMER APPLICATION FOR COOPERATIVE MEMBERSHIP</h1><br>
+               <h1>FARMER APPLICATION FOR COOPERATIVE MEMBERSHIP</h1>
+               <br />
                <div class="section-header">Personal Information</div>
             </div>
 
@@ -230,18 +234,26 @@
             <div class="section-header">
                Coop Approval (For Office Use Only)
             </div>
-            <div class="grid">
-               <div class="c4">
+            <div class="grid coop-approval-grid">
+               <div class="c2 coop-reg-id">
                   <label>Registration ID No.</label>
                   <input type="text" />
                </div>
-               <div class="c4">
+               <div class="c3">
+                  <label>Approved by</label>
+                  <input type="text" />
+               </div>
+               <div class="c3">
                   <label>Date Approved (mm/dd/yyyy)</label>
                   <input type="date" />
                </div>
-               <div class="c4">
+               <div class="c2">
                   <label>Received by</label>
                   <input type="text" />
+               </div>
+               <div class="c2">
+                  <label>Received date</label>
+                  <input type="date" />
                </div>
             </div>
          </form>
@@ -261,7 +273,10 @@
             background: transparent;
             box-sizing: border-box;
          }
-         .sheet td .pdf-value { display: block; width: 100%; }
+         .sheet td .pdf-value {
+            display: block;
+            width: 100%;
+         }
          .pdf-checkbox {
             display: inline-block;
             width: 14px;
@@ -277,21 +292,26 @@
       </style>
       <script>
          (function () {
-            var STORAGE_KEY = 'farmer-form-draft';
-            var form = document.getElementById('form');
+            var STORAGE_KEY = "farmer-form-draft";
+            var form = document.getElementById("form");
 
             function saveFormDraft() {
                if (!form) return;
-               var inputs = form.querySelectorAll('input');
+               var inputs = form.querySelectorAll("input");
                var data = { count: inputs.length, fields: [] };
                inputs.forEach(function (input) {
-                  var type = (input.type || 'text').toLowerCase();
+                  var type = (input.type || "text").toLowerCase();
                   data.fields.push({
-                     value: input.value || '',
-                     checked: type === 'checkbox' || type === 'radio' ? input.checked : false
+                     value: input.value || "",
+                     checked:
+                        type === "checkbox" || type === "radio" ?
+                           input.checked
+                        :  false,
                   });
                });
-               try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+               try {
+                  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+               } catch (e) {}
             }
 
             function loadFormDraft() {
@@ -300,11 +320,14 @@
                   var raw = localStorage.getItem(STORAGE_KEY);
                   if (!raw) return;
                   var data = JSON.parse(raw);
-                  var inputs = form.querySelectorAll('input');
+                  var inputs = form.querySelectorAll("input");
                   if (data.fields && data.fields.length === inputs.length) {
                      data.fields.forEach(function (f, i) {
-                        inputs[i].value = f.value != null ? f.value : '';
-                        if (inputs[i].type === 'checkbox' || inputs[i].type === 'radio') {
+                        inputs[i].value = f.value != null ? f.value : "";
+                        if (
+                           inputs[i].type === "checkbox" ||
+                           inputs[i].type === "radio"
+                        ) {
                            inputs[i].checked = !!f.checked;
                         }
                      });
@@ -313,124 +336,163 @@
             }
 
             loadFormDraft();
-            window.addEventListener('beforeprint', saveFormDraft);
-            document.getElementById('generate-pdf-btn').addEventListener('click', saveFormDraft);
-            document.getElementById('save-draft-btn').addEventListener('click', function () {
-               saveFormDraft();
-               var btn = document.getElementById('save-draft-btn');
-               var t = btn.textContent;
-               btn.textContent = 'Saved';
-               setTimeout(function () { btn.textContent = t; }, 1500);
-            });
-            form.addEventListener('reset', function () {
-               try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+            window.addEventListener("beforeprint", saveFormDraft);
+            document
+               .getElementById("generate-pdf-btn")
+               .addEventListener("click", saveFormDraft);
+            document
+               .getElementById("save-draft-btn")
+               .addEventListener("click", function () {
+                  saveFormDraft();
+                  var btn = document.getElementById("save-draft-btn");
+                  var t = btn.textContent;
+                  btn.textContent = "Saved";
+                  setTimeout(function () {
+                     btn.textContent = t;
+                  }, 1500);
+               });
+            form.addEventListener("reset", function () {
+               try {
+                  localStorage.removeItem(STORAGE_KEY);
+               } catch (e) {}
             });
          })();
       </script>
       <script>
-         document.getElementById('generate-pdf-btn').addEventListener('click', function () {
-            var sheet = document.querySelector('.sheet');
-            if (!sheet) return;
-            function formatDate(val) {
-               if (!val) return '';
-               var d = new Date(val);
-               var m = '' + (d.getMonth() + 1), day = '' + d.getDate(), y = d.getFullYear();
-               if (m.length < 2) m = '0' + m;
-               if (day.length < 2) day = '0' + day;
-               return m + '/' + day + '/' + y;
-            }
-            var restores = [];
-            sheet.querySelectorAll('input').forEach(function (input) {
-               var type = (input.type || 'text').toLowerCase();
-               var parent = input.parentNode;
-               if (type === 'checkbox' || type === 'radio') {
-                  var span = document.createElement('span');
-                  span.className = 'pdf-checkbox';
-                  span.textContent = input.checked ? '\u2713' : '';
-                  parent.replaceChild(span, input);
-                  restores.push({ parent: parent, input: input, span: span });
-               } else {
-                  var span = document.createElement('span');
-                  span.className = 'pdf-value';
-                  var val = input.value || '';
-                  if (type === 'date' && val) val = formatDate(val);
-                  span.textContent = val;
-                  parent.replaceChild(span, input);
-                  restores.push({ parent: parent, input: input, span: span });
+         document
+            .getElementById("generate-pdf-btn")
+            .addEventListener("click", function () {
+               var sheet = document.querySelector(".sheet");
+               if (!sheet) return;
+               function formatDate(val) {
+                  if (!val) return "";
+                  var d = new Date(val);
+                  var m = "" + (d.getMonth() + 1),
+                     day = "" + d.getDate(),
+                     y = d.getFullYear();
+                  if (m.length < 2) m = "0" + m;
+                  if (day.length < 2) day = "0" + day;
+                  return m + "/" + day + "/" + y;
                }
-            });
-            function restore() {
-               restores.forEach(function (r) {
-                  if (r.span.parentNode) {
-                     r.parent.replaceChild(r.input, r.span);
+               var restores = [];
+               sheet.querySelectorAll("input").forEach(function (input) {
+                  var type = (input.type || "text").toLowerCase();
+                  var parent = input.parentNode;
+                  if (type === "checkbox" || type === "radio") {
+                     var span = document.createElement("span");
+                     span.className = "pdf-checkbox";
+                     span.textContent = input.checked ? "\u2713" : "";
+                     parent.replaceChild(span, input);
+                     restores.push({
+                        parent: parent,
+                        input: input,
+                        span: span,
+                     });
+                  } else {
+                     var span = document.createElement("span");
+                     span.className = "pdf-value";
+                     var val = input.value || "";
+                     if (type === "date" && val) val = formatDate(val);
+                     span.textContent = val;
+                     parent.replaceChild(span, input);
+                     restores.push({
+                        parent: parent,
+                        input: input,
+                        span: span,
+                     });
                   }
                });
-            }
-            html2canvas(sheet, {
-               scale: 2,
-               useCORS: true,
-               logging: false,
-               scrollX: 0,
-               scrollY: 0
-            }).then(function (canvas) {
-               var imgData = canvas.toDataURL('image/jpeg', 0.95);
-               var pdf = new jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-               var pageW = pdf.internal.pageSize.getWidth();
-               var pageH = pdf.internal.pageSize.getHeight();
-               var margin = 5;
-               var fitW = pageW - 2 * margin;
-               var fitH = pageH - 2 * margin;
-               var imgW = canvas.width;
-               var imgH = canvas.height;
-               var aspect = imgH / imgW;
-               var drawW = fitW;
-               var drawH = fitW * aspect;
-               if (drawH > fitH) {
-                  drawH = fitH;
-                  drawW = fitH / aspect;
+               function restore() {
+                  restores.forEach(function (r) {
+                     if (r.span.parentNode) {
+                        r.parent.replaceChild(r.input, r.span);
+                     }
+                  });
                }
-               var x = margin + (fitW - drawW) / 2;
-               var y = margin + (fitH - drawH) / 2;
-               pdf.addImage(imgData, 'JPEG', x, y, drawW, drawH);
-               pdf.save('farmer-application.pdf');
-               restore();
-            }).catch(function () {
-               restore();
+               html2canvas(sheet, {
+                  scale: 2,
+                  useCORS: true,
+                  logging: false,
+                  scrollX: 0,
+                  scrollY: 0,
+               })
+                  .then(function (canvas) {
+                     var imgData = canvas.toDataURL("image/jpeg", 0.95);
+                     var pdf = new jspdf.jsPDF({
+                        orientation: "portrait",
+                        unit: "mm",
+                        format: "a4",
+                     });
+                     var pageW = pdf.internal.pageSize.getWidth();
+                     var pageH = pdf.internal.pageSize.getHeight();
+                     var margin = 5;
+                     var fitW = pageW - 2 * margin;
+                     var fitH = pageH - 2 * margin;
+                     var imgW = canvas.width;
+                     var imgH = canvas.height;
+                     var aspect = imgH / imgW;
+                     var drawW = fitW;
+                     var drawH = fitW * aspect;
+                     if (drawH > fitH) {
+                        drawH = fitH;
+                        drawW = fitH / aspect;
+                     }
+                     var x = margin + (fitW - drawW) / 2;
+                     var y = margin + (fitH - drawH) / 2;
+                     pdf.addImage(imgData, "JPEG", x, y, drawW, drawH);
+                     pdf.save("farmer-application.pdf");
+                     restore();
+                  })
+                  .catch(function () {
+                     restore();
+                  });
             });
-         });
       </script>
       <script>
          (function () {
             var dateInputs = document.querySelectorAll('input[type="date"]');
             function formatDateForPrint(value) {
-               if (!value) return '';
+               if (!value) return "";
                var d = new Date(value);
-               var m = '' + (d.getMonth() + 1), day = '' + d.getDate(), y = d.getFullYear();
-               if (m.length < 2) m = '0' + m;
-               if (day.length < 2) day = '0' + day;
-               return m + '/' + day + '/' + y;
+               var m = "" + (d.getMonth() + 1),
+                  day = "" + d.getDate(),
+                  y = d.getFullYear();
+               if (m.length < 2) m = "0" + m;
+               if (day.length < 2) day = "0" + day;
+               return m + "/" + day + "/" + y;
             }
-            window.addEventListener('beforeprint', function () {
+            window.addEventListener("beforeprint", function () {
                dateInputs.forEach(function (input) {
-               input._savedType = 'date';
-               input._savedValue = input.value || '';
-               input.type = 'text';
-               input.value = input._savedValue ? formatDateForPrint(input._savedValue) : '';
+                  input._savedType = "date";
+                  input._savedValue = input.value || "";
+                  input.type = "text";
+                  input.value =
+                     input._savedValue ?
+                        formatDateForPrint(input._savedValue)
+                     :  "";
+               });
             });
-            });
-            window.addEventListener('afterprint', function () {
+            window.addEventListener("afterprint", function () {
                dateInputs.forEach(function (input) {
-               input.type = input._savedType || 'date';
-               input.value = input._savedValue || '';
-               delete input._savedType;
-               delete input._savedValue;
-            });
+                  input.type = input._savedType || "date";
+                  input.value = input._savedValue || "";
+                  delete input._savedType;
+                  delete input._savedValue;
+               });
             });
          })();
       </script>
       <footer class="site-credits">
          <p class="site-credits-dev">Developed by ALEX OLESCO</p>
-         <p class="site-credits-contact">For website development, contact <a href="https://www.facebook.com/alexolesco" target="_blank" rel="noopener noreferrer">ALEX OLESCO on Facebook</a></p>
+         <p class="site-credits-contact">
+            For website development, contact
+            <a
+               href="https://www.facebook.com/alexolesco"
+               target="_blank"
+               rel="noopener noreferrer"
+               >ALEX OLESCO on Facebook</a
+            >
+         </p>
       </footer>
    </body>
 </html>

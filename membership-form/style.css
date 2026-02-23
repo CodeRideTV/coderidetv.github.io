@@ -543,6 +543,26 @@ body {
    grid-column: span 2;
 }
 
+/* Coop Approval: align date inputs with text inputs, de-prioritize Registration ID */
+.coop-approval-grid {
+   align-items: end;
+}
+.coop-approval-grid label {
+   margin-bottom: 2px;
+}
+.coop-approval-grid input[type="date"] {
+   height: 20px;
+   min-height: 20px;
+   line-height: 1;
+   padding: 3px 2px 2px;
+   box-sizing: border-box;
+}
+.coop-approval-grid .coop-reg-id label {
+   color: #666;
+   font-size: 9px;
+   font-weight: 500;
+}
+
 label {
    display: block;
    font-size: 10px;

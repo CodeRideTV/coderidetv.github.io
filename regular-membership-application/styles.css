@@ -261,6 +261,9 @@ body {
 .field.wide { flex: 1; }
 .field.full { flex: 1; }
 .field.tiny { width: 160px; flex: 0 0 auto; }
+.field.field-date { width: 150px; flex: 0 0 auto; min-width: 150px; }
+
+.label2.label-inline { width: 95px; flex-shrink: 0; }
 
 .muted { font-size: 11px; }
 .center { text-align: center; }

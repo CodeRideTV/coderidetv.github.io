@@ -510,8 +510,22 @@
 
                      <div class="row">
                         <div class="label2">Received by:</div>
-                        <div class="field full">
+                        <div class="field">
                            <input class="input-line" type="text" />
+                        </div>
+                        <div class="label2 label-inline">Received date:</div>
+                        <div class="field field-date">
+                           <input class="input-line" type="date" />
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="label2">Approved by:</div>
+                        <div class="field">
+                           <input class="input-line" type="text" />
+                        </div>
+                        <div class="label2 label-inline">Date approved:</div>
+                        <div class="field field-date">
+                           <input class="input-line" type="date" />
                         </div>
                      </div>
                   </div>
@@ -539,7 +553,10 @@
             background: transparent;
             box-sizing: border-box;
          }
-         .sheet .field .pdf-value { display: block; width: 100%; }
+         .sheet .field .pdf-value {
+            display: block;
+            width: 100%;
+         }
          .pdf-checkbox {
             display: inline-block;
             width: 14px;
@@ -566,7 +583,10 @@
                   var type = (input.type || "text").toLowerCase();
                   data.fields.push({
                      value: input.value || "",
-                     checked: type === "checkbox" || type === "radio" ? input.checked : false,
+                     checked:
+                        type === "checkbox" || type === "radio" ?
+                           input.checked
+                        :  false,
                   });
                });
                try {
@@ -584,7 +604,10 @@
                   if (data.fields && data.fields.length === inputs.length) {
                      data.fields.forEach(function (f, i) {
                         inputs[i].value = f.value != null ? f.value : "";
-                        if (inputs[i].type === "checkbox" || inputs[i].type === "radio") {
+                        if (
+                           inputs[i].type === "checkbox" ||
+                           inputs[i].type === "radio"
+                        ) {
                            inputs[i].checked = !!f.checked;
                         }
                      });
@@ -594,14 +617,20 @@
 
             loadFormDraft();
             window.addEventListener("beforeprint", saveFormDraft);
-            document.getElementById("generate-pdf-btn").addEventListener("click", saveFormDraft);
-            document.getElementById("save-draft-btn").addEventListener("click", function () {
-               saveFormDraft();
-               var btn = document.getElementById("save-draft-btn");
-               var t = btn.textContent;
-               btn.textContent = "Saved";
-               setTimeout(function () { btn.textContent = t; }, 1500);
-            });
+            document
+               .getElementById("generate-pdf-btn")
+               .addEventListener("click", saveFormDraft);
+            document
+               .getElementById("save-draft-btn")
+               .addEventListener("click", function () {
+                  saveFormDraft();
+                  var btn = document.getElementById("save-draft-btn");
+                  var t = btn.textContent;
+                  btn.textContent = "Saved";
+                  setTimeout(function () {
+                     btn.textContent = t;
+                  }, 1500);
+               });
             form.addEventListener("reset", function () {
                try {
                   localStorage.removeItem(STORAGE_KEY);
@@ -625,13 +654,21 @@
                      span.className = "pdf-checkbox";
                      span.textContent = input.checked ? "\u2713" : "";
                      parent.replaceChild(span, input);
-                     restores.push({ parent: parent, input: input, span: span });
+                     restores.push({
+                        parent: parent,
+                        input: input,
+                        span: span,
+                     });
                   } else {
                      var span = document.createElement("span");
                      span.className = "input-line pdf-value";
                      span.textContent = input.value || "";
                      parent.replaceChild(span, input);
-                     restores.push({ parent: parent, input: input, span: span });
+                     restores.push({
+                        parent: parent,
+                        input: input,
+                        span: span,
+                     });
                   }
                });
 
