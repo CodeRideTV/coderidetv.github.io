@@ -17,6 +17,255 @@ body {
    background: #f2f2f2;
 }
 
+/* ====== SITE NAVIGATION ====== */
+.site-nav {
+   background: #2c3e50;
+   color: #fff;
+   padding: 10px 16px;
+   margin-bottom: 0;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.site-nav-inner {
+   max-width: 900px;
+   margin: 0 auto;
+   display: flex;
+   gap: 4px;
+   align-items: center;
+   flex-wrap: wrap;
+}
+.site-nav a {
+   color: #fff;
+   text-decoration: none;
+   padding: 6px 12px;
+   border-radius: 4px;
+   font-size: 13px;
+   font-weight: 600;
+}
+.site-nav a:hover {
+   background: rgba(255,255,255,0.15);
+}
+.site-nav a.active {
+   background: rgba(255,255,255,0.25);
+}
+
+/* ====== LANDING PAGE ====== */
+.landing {
+   max-width: 640px;
+   margin: 40px auto;
+   padding: 0 16px;
+}
+.landing-title {
+   font-size: 22px;
+   margin: 0 0 8px;
+   color: var(--ink);
+}
+.landing-intro {
+   color: #555;
+   margin: 0 0 24px;
+   font-size: 14px;
+}
+.landing-cards {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+.landing-card {
+   display: block;
+   padding: 16px 20px;
+   background: #fff;
+   border: 1px solid #ddd;
+   border-radius: 8px;
+   text-decoration: none;
+   color: var(--ink);
+   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+   transition: border-color 0.2s, box-shadow 0.2s;
+}
+.landing-card:hover {
+   border-color: #2c3e50;
+   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.landing-card-title {
+   display: block;
+   font-weight: 700;
+   font-size: 15px;
+   margin-bottom: 4px;
+}
+.landing-card-desc {
+   display: block;
+   font-size: 13px;
+   color: #555;
+}
+
+/* ====== DEVELOPMENT PLAN (static guide) ====== */
+.guide-text {
+   font-size: 10px;
+   color: #555;
+   margin: 0 0 8px;
+}
+.devplan-guide {
+   margin-bottom: 12px;
+}
+.guide-block {
+   margin-bottom: 10px;
+   padding-bottom: 8px;
+   border-bottom: 1px solid #eee;
+}
+.guide-block:last-of-type {
+   border-bottom: none;
+}
+.guide-block strong {
+   display: block;
+   font-size: 11px;
+   margin-bottom: 2px;
+}
+.guide-block p {
+   font-size: 10px;
+   color: #444;
+   margin: 0 0 4px;
+   line-height: 1.35;
+}
+.guide-block label {
+   font-size: 9px;
+   margin-bottom: 1px;
+}
+.guide-block input {
+   margin-top: 0;
+}
+.sheet-guide .guide-body {
+   font-size: 11px;
+   line-height: 1.45;
+   margin: 0 0 10px;
+   color: var(--ink);
+}
+
+/* ====== ANNUAL DEVELOPMENT PLAN (static table) ====== */
+.sheet-devplan {
+   padding: 10mm;
+}
+.devplan-header {
+   text-align: center;
+   margin-bottom: 10px;
+}
+.devplan-header-fields {
+   margin-bottom: 6px;
+}
+.devplan-label {
+   display: block;
+   font-size: 10px;
+   margin: 0 0 2px;
+   color: #444;
+}
+.devplan-input {
+   display: block;
+   width: 100%;
+   max-width: 400px;
+   margin: 0 auto;
+   border: none;
+   border-bottom: 1px solid var(--line);
+   padding: 2px 4px;
+   font-size: 11px;
+   background: transparent;
+   outline: none;
+   text-align: center;
+}
+.devplan-address-input {
+   max-width: 480px;
+}
+.devplan-year-wrap {
+   margin-top: 4px;
+   margin-bottom: 0;
+}
+.devplan-year-input {
+   max-width: 120px;
+}
+.devplan-header h1 {
+   font-size: 12px;
+   margin: 8px 0 2px;
+   text-transform: uppercase;
+   letter-spacing: 0.3px;
+}
+.devplan-year {
+   font-size: 11px;
+   margin: 0;
+}
+.devplan-table {
+   width: 100%;
+   border-collapse: collapse;
+   font-size: 9px;
+   margin-bottom: 12px;
+}
+.devplan-table th,
+.devplan-table td {
+   border: 1px solid var(--line);
+   padding: 4px 5px;
+   vertical-align: top;
+   text-align: left;
+}
+.devplan-table th {
+   background: #e8e8e8;
+   font-weight: 700;
+   text-transform: uppercase;
+   font-size: 8px;
+   letter-spacing: 0.1px;
+}
+.devplan-table .section-row td {
+   background: #4a4a4a;
+   color: #fff;
+   font-weight: 700;
+   padding: 5px 6px;
+}
+.devplan-table .subsection-row td {
+   background: #ddd;
+   font-weight: 700;
+   padding: 4px 6px;
+}
+.devplan-signatures {
+   margin-top: 14px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: flex-start;
+   gap: 10px;
+}
+.devplan-sig-left p,
+.devplan-sig-right p {
+   margin: 0 0 24px;
+   font-size: 10px;
+   font-weight: 700;
+}
+.devplan-sig-names {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   gap: 8px;
+   font-size: 9px;
+   color: #555;
+   margin-top: -18px;
+   padding-top: 2px;
+   border-top: 1px solid var(--line);
+}
+.devplan-sig-names span {
+   flex: 1;
+   min-width: 60px;
+   text-align: center;
+}
+
+@media print {
+   .sheet-devplan .devplan-table th,
+   .sheet-devplan .devplan-table td {
+      padding: 3px 4px;
+      font-size: 8px;
+   }
+   .sheet-devplan .devplan-table th {
+      font-size: 7px;
+   }
+   .devplan-table .section-row td {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+   }
+}
+
 /* ====== SCREEN TOOLBAR ====== */
 .toolbar {
    position: sticky;
@@ -65,6 +314,11 @@ body {
    margin: 0 0 4px;
    letter-spacing: 0.4px;
    text-transform: uppercase;
+}
+.form-header .form-subtitle {
+   font-size: 10px;
+   color: #555;
+   margin: 0 0 8px;
 }
 .form-header .header-row {
    display: flex;
@@ -321,6 +575,9 @@ td input {
 
 /* ====== PRINT ====== */
 @media print {
+   .site-nav {
+      display: none !important;
+   }
    /* Hide everything from GitHub Pages (header, site name, layout) so only the form prints */
    body * {
       visibility: hidden;
@@ -339,6 +596,15 @@ td input {
       width: 210mm;
       min-height: auto;
       padding: 0; /* @page controls margins */
+   }
+   /* Development Plan: fill full width in landscape */
+   .sheet-devplan {
+      width: 100%;
+      max-width: none;
+      padding: 6mm;
+   }
+   .sheet-devplan .devplan-table {
+      width: 100%;
    }
    body {
       background: #fff;

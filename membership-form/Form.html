@@ -8,6 +8,12 @@
    </head>
 
    <body>
+      <nav class="site-nav" aria-label="Main">
+         <div class="site-nav-inner">
+            <a href="Form.html" class="active">Farmer Application</a>
+            <a href="development-plan.html">Development Plan</a>
+         </div>
+      </nav>
       <div class="toolbar">
          <button class="btn" type="button" onclick="window.print()">
             Print
@@ -24,8 +30,8 @@
          <form id="form">
             <div class="form-header">
                <h1>FARMER APPLICATION FOR COOPERATIVE MEMBERSHIP</h1><br>
-               <div class="section-header">Personal Information</div> 
-            </div> </form> 
+               <div class="section-header">Personal Information</div>
+            </div>
 
             <div class="grid">
                <div class="c4">
@@ -238,5 +244,34 @@
             </div>
          </form>
       </div>
+      <script>
+         (function () {
+            var dateInputs = document.querySelectorAll('input[type="date"]');
+            function formatDateForPrint(value) {
+               if (!value) return '';
+               var d = new Date(value);
+               var m = '' + (d.getMonth() + 1), day = '' + d.getDate(), y = d.getFullYear();
+               if (m.length < 2) m = '0' + m;
+               if (day.length < 2) day = '0' + day;
+               return m + '/' + day + '/' + y;
+            }
+            window.addEventListener('beforeprint', function () {
+               dateInputs.forEach(function (input) {
+               input._savedType = 'date';
+               input._savedValue = input.value || '';
+               input.type = 'text';
+               input.value = input._savedValue ? formatDateForPrint(input._savedValue) : '';
+            });
+            });
+            window.addEventListener('afterprint', function () {
+               dateInputs.forEach(function (input) {
+               input.type = input._savedType || 'date';
+               input.value = input._savedValue || '';
+               delete input._savedType;
+               delete input._savedValue;
+            });
+            });
+         })();
+      </script>
    </body>
 </html>
