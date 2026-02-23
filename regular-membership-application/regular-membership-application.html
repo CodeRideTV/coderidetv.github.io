@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Regular Membership Application (Template)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .site-nav { width: 100%; background: #2c3e50; color: #fff; padding: 10px 16px; margin-bottom: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); box-sizing: border-box; }
+    .site-nav-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    .site-nav a { color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; }
+    .site-nav a:hover { background: rgba(255,255,255,0.15); }
+    .site-nav a.active { background: rgba(255,255,255,0.25); }
+    @media (max-width: 768px) {
+      .site-nav-inner { max-width: none; width: 100%; justify-content: center; }
+      .site-nav a { padding: 10px 16px; font-size: 14px; flex: 1; min-width: 0; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <div class="site-nav-inner">
+      <a href="../index.html">Home</a>
+      <a href="../membership-form/Form.html">Farmer Application</a>
+      <a href="regular-membership-application.html" class="active">Regular Membership</a>
+      <a href="../membership-form/development-plan.html">Development Plan</a>
+    </div>
+  </nav>
+  <main class="page">
+    <section class="sheet">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <!-- Replace with your coop logo if needed -->
+          <div class="logo-box" aria-label="Coop logo placeholder">LOGO</div>
+          <div class="coop-name">
+            <div class="coop-name-line">______________________________</div>
+            <div class="coop-name-sub">Cooperative</div>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="small-lines">
+            <div>______________________________________________</div>
+            <div>______________________________________________</div>
+            <div>Tel. No.: ____________________</div>
+            <div>Fax No.: ____________________</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="title">
+        <div class="title-main">REGULAR MEMBERSHIP APPLICATION</div>
+        <div class="title-sub">PERSONAL INFORMATION</div>
+      </div>
+
+      <!-- Personal Information -->
+      <section class="box">
+        <div class="row row-name">
+          <div class="label">Name</div>
+
+          <div class="field">
+            <div class="hint">Surname</div>
+            <input class="input-line" type="text" />
+          </div>
+
+          <div class="field">
+            <div class="hint">First Name</div>
+            <input class="input-line" type="text" />
+          </div>
+
+          <div class="field">
+            <div class="hint">Middle name</div>
+            <input class="input-line" type="text" />
+          </div>
+        </div>
+
+        <div class="row row-gender">
+          <div class="label">Gender</div>
+          <div class="inline">
+            <label class="chk"><input type="checkbox" /> Male</label>
+            <label class="chk"><input type="checkbox" /> Female</label>
+          </div>
+        </div>
+
+        <div class="row row-dob-ms">
+          <div class="col">
+            <div class="row">
+              <div class="label">Date of Birth</div>
+              <div class="field wide">
+                <div class="hint">(mm/dd/yyyy)</div>
+                <input class="input-line" type="text" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Name of Spouse</div>
+              <div class="field wide">
+                <input class="input-line" type="text" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Present Address</div>
+              <div class="field wide">
+                <input class="input-line" type="text" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col ms-col">
+            <div class="row">
+              <div class="label">Marital Status</div>
+              <div class="inline ms-grid">
+                <label class="chk"><input type="checkbox" /> Single</label>
+                <label class="chk"><input type="checkbox" /> Married</label>
+                <label class="chk"><input type="checkbox" /> Separated</label>
+                <label class="chk"><input type="checkbox" /> Widowed</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row living-row">
+          <div class="spacer"></div>
+          <div class="inline living-inline">
+            <label class="chk"><input type="checkbox" /> Owned</label>
+            <label class="chk"><input type="checkbox" /> Rented/Boarder</label>
+            <label class="chk"><input type="checkbox" /> Living with Parents/Relatives</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">Permanent Address</div>
+          <div class="field full">
+            <input class="input-line" type="text" />
+          </div>
+        </div>
+
+        <div class="row two-col">
+          <div class="col">
+            <div class="row">
+              <div class="label">Mobile Number</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">BPI / BFB Account No.</div>
+              <div class="field wide">
+                <input class="input-line" type="text" />
+              </div>
+              <div class="inline bank-inline">
+                <label class="chk"><input type="checkbox" /> SA</label>
+                <label class="chk"><input type="checkbox" /> CA</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">SSS ID No.</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Company Name</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Office Address</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Employee No.</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Date Hired</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row">
+              <div class="label">Home Phone Number</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Position</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row pos-row">
+              <div class="spacer"></div>
+              <div class="inline pos-inline">
+                <label class="chk"><input type="checkbox" /> Director/Executive</label>
+                <label class="chk"><input type="checkbox" /> Officer</label>
+                <label class="chk"><input type="checkbox" /> Supervisor</label>
+                <label class="chk"><input type="checkbox" /> Staff</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="label">Office Email Address</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Personal Email Address</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+
+            <div class="row">
+              <div class="label">Office Phone Number</div>
+              <div class="field wide"><input class="input-line" type="text" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Application Type -->
+      <div class="bar">APPLICATION TYPE</div>
+      <section class="box">
+        <div class="row app-type">
+          <div class="inline app-inline">
+            <label class="chk"><input type="checkbox" /> New Member</label>
+            <label class="chk"><input type="checkbox" /> Re - Activate</label>
+            <label class="chk"><input type="checkbox" /> Update Records<br /><span class="muted">( e.g. change of status, address, etc. )</span></label>
+          </div>
+        </div>
+
+        <div class="row transfer-row">
+          <label class="chk"><input type="checkbox" /> Transfer From</label>
+          <div class="field tiny"><input class="input-line" type="text" /></div>
+          <div class="muted">To</div>
+          <div class="field tiny"><input class="input-line" type="text" /></div>
+        </div>
+      </section>
+
+      <!-- Capital Build-Up -->
+      <div class="bar">FOR ACTIVE EMPLOYEE</div>
+      <section class="box pledge">
+        <div class="pledge-title">CAPITAL BUILD-UP PLEDGE</div>
+
+        <p class="para">
+          I declare that the information herein above written is correct, further I have read and understood the
+          policies, rules, etc. of the Coop as contained in the website and other communication channels of the
+          ____________________________ Cooperative. I also agree to the terms and conditions therein contained.
+        </p>
+
+        <p class="para">
+          I hereby subscribe to the ____________________________ Cooperative common shares at P500 per share and
+          my contribution per payday for continued capital build-up is:
+        </p>
+
+        <div class="row pledge-amount">
+          <label class="chk"><input type="checkbox" /> P</label>
+          <div class="field amount"><input class="input-line" type="text" /></div>
+          <div class="muted">/ per payday</div>
+
+          <label class="chk other"><input type="checkbox" /></label>
+          <div class="field amount2"><input class="input-line" type="text" /></div>
+          <div class="muted">(amount of your choice)</div>
+        </div>
+
+        <p class="para">
+          This serves as an authorization for salary deduction for capital contribution and any future loan amortization
+          to be paid to the Coop hereafter. I acknowledge that I have read, understood and/or have been duly informed of
+          the terms and conditions pertaining to the data privacy practices of the Coop.
+        </p>
+
+        <div class="sig-row">
+          <div class="sig-line">
+            <div class="sig-underline"></div>
+            <div class="sig-label">Signature over Printed Name of Applicant</div>
+          </div>
+          <div class="sig-line date">
+            <div class="sig-underline"></div>
+            <div class="sig-label">Date</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beneficiaries -->
+      <div class="bar">BENEFICIARIES <span class="bar-sub">(Surname, First name, Middle name)</span></div>
+      <section class="box">
+        <div class="benef-head">
+          <div class="bh bh1">Fullname (Last, First, Middle)</div>
+          <div class="bh bh2">Date of Birth</div>
+          <div class="bh bh3">Relationship to the Member</div>
+        </div>
+
+        <div class="benef-rows">
+          <!-- 1 -->
+          <div class="benef-row">
+            <div class="bn">1.</div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+          </div>
+          <!-- 2 -->
+          <div class="benef-row">
+            <div class="bn">2.</div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+          </div>
+          <!-- 3 -->
+          <div class="benef-row">
+            <div class="bn">3.</div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+          </div>
+          <!-- 4 -->
+          <div class="benef-row">
+            <div class="bn">4.</div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+            <div class="field"><input class="input-line" type="text" /></div>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <em>
+            *Disclaimer: If no beneficiaries nominated, the Coop will follow the legal heirs based on hierarchy rule:
+            spouse for married and parents for single member*
+          </em>
+        </div>
+      </section>
+
+      <!-- Bottom two panels -->
+      <section class="box bottom-panels">
+        <div class="panel left">
+          <div class="panel-title">HRD CERTIFICATION</div>
+          <div class="panel-sub"><em>(Please put a check mark on the employment status of Applicant)</em></div>
+
+          <div class="row hrd-cert-oneline">
+            <span class="muted">I certify that the Applicant is a</span>
+            <label class="chk"><input type="checkbox" /> PERMANENT</label>
+            <label class="chk"><input type="checkbox" /> PROBATIONARY</label>
+          </div>
+
+          <div class="row">
+            <div class="muted">employee of</div>
+            <div class="field full"><input class="input-line" type="text" /></div>
+          </div>
+          <div class="center muted">(Company Name)</div>
+
+          <div class="sig-row panel-sig">
+            <div class="sig-line">
+              <div class="sig-underline"></div>
+              <div class="sig-label">Signature over printed name<br />HRD Authorized Officer</div>
+            </div>
+            <div class="sig-line date">
+              <div class="sig-underline"></div>
+              <div class="sig-label">Date</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel right">
+          <div class="panel-title">COOP APPROVAL</div>
+          <div class="panel-sub"><em>(To be filled out by Coop)</em></div>
+
+          <div class="row">
+            <div class="label2">Membership ID No:</div>
+            <div class="field full"><input class="input-line" type="text" /></div>
+          </div>
+
+          <div class="row">
+            <div class="label2">Date Approved in MLMS:</div>
+            <div class="field full"><input class="input-line" type="text" /></div>
+          </div>
+
+          <div class="row">
+            <div class="label2">Start Date of Salary Deduction:</div>
+            <div class="field full"><input class="input-line" type="text" /></div>
+          </div>
+
+          <div class="row">
+            <div class="label2">Received by:</div>
+            <div class="field full"><input class="input-line" type="text" /></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer-note">
+        <strong>NOTE:</strong> Please send the accomplished form through email to
+        <span class="email-blank">______________________________</span>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
