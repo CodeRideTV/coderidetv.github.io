@@ -105,6 +105,25 @@ body {
    }
 }
 
+/* Mobile: keep form/print layout identical to desktop (no shrinking or merging) */
+@media (max-width: 900px) {
+   body {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+   }
+   .sheet {
+      min-width: 210mm;
+      flex-shrink: 0;
+   }
+   .sheet-devplan {
+      min-width: 297mm; /* A4 landscape width */
+   }
+   .devplan-table {
+      table-layout: fixed;
+      min-width: 100%;
+   }
+}
+
 /* ====== LANDING PAGE ====== */
 .landing {
    max-width: 640px;

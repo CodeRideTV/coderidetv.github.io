@@ -8,17 +8,14 @@
    </head>
 
    <body>
-      <nav class="site-nav" aria-label="Main">
-         <div class="site-nav-inner">
-            <a href="../index.html">Home</a>
-            <a href="Form.html" class="active">Farmer Application</a>
-            <a href="../regular-membership-application/regular-membership-application.html">Regular Membership</a>
-            <a href="development-plan.html">Development Plan</a>
-         </div>
-      </nav>
+      <div class="site-nav-placeholder" data-current="farmer" data-folder="membership-form"></div>
+      <script src="../nav.js"></script>
       <div class="toolbar">
          <button class="btn" type="button" onclick="window.print()">
             Print
+         </button>
+         <button class="btn" type="button" id="generate-pdf-btn">
+            Generate PDF
          </button>
          <button
             class="btn secondary"
@@ -246,6 +243,107 @@
             </div>
          </form>
       </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <style>
+         .pdf-value {
+            display: block;
+            width: 100%;
+            min-height: 20px;
+            border: none;
+            border-bottom: 1px solid #999;
+            font-size: 11px;
+            padding: 3px 2px 2px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: transparent;
+            box-sizing: border-box;
+         }
+         .sheet td .pdf-value { display: block; width: 100%; }
+         .pdf-checkbox {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #000;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 4px;
+         }
+      </style>
+      <script>
+         document.getElementById('generate-pdf-btn').addEventListener('click', function () {
+            var sheet = document.querySelector('.sheet');
+            if (!sheet) return;
+            function formatDate(val) {
+               if (!val) return '';
+               var d = new Date(val);
+               var m = '' + (d.getMonth() + 1), day = '' + d.getDate(), y = d.getFullYear();
+               if (m.length < 2) m = '0' + m;
+               if (day.length < 2) day = '0' + day;
+               return m + '/' + day + '/' + y;
+            }
+            var restores = [];
+            sheet.querySelectorAll('input').forEach(function (input) {
+               var type = (input.type || 'text').toLowerCase();
+               var parent = input.parentNode;
+               if (type === 'checkbox' || type === 'radio') {
+                  var span = document.createElement('span');
+                  span.className = 'pdf-checkbox';
+                  span.textContent = input.checked ? '\u2713' : '';
+                  parent.replaceChild(span, input);
+                  restores.push({ parent: parent, input: input, span: span });
+               } else {
+                  var span = document.createElement('span');
+                  span.className = 'pdf-value';
+                  var val = input.value || '';
+                  if (type === 'date' && val) val = formatDate(val);
+                  span.textContent = val;
+                  parent.replaceChild(span, input);
+                  restores.push({ parent: parent, input: input, span: span });
+               }
+            });
+            function restore() {
+               restores.forEach(function (r) {
+                  if (r.span.parentNode) {
+                     r.parent.replaceChild(r.input, r.span);
+                  }
+               });
+            }
+            html2canvas(sheet, {
+               scale: 2,
+               useCORS: true,
+               logging: false,
+               scrollX: 0,
+               scrollY: 0
+            }).then(function (canvas) {
+               var imgData = canvas.toDataURL('image/jpeg', 0.95);
+               var pdf = new jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+               var pageW = pdf.internal.pageSize.getWidth();
+               var pageH = pdf.internal.pageSize.getHeight();
+               var margin = 5;
+               var fitW = pageW - 2 * margin;
+               var fitH = pageH - 2 * margin;
+               var imgW = canvas.width;
+               var imgH = canvas.height;
+               var aspect = imgH / imgW;
+               var drawW = fitW;
+               var drawH = fitW * aspect;
+               if (drawH > fitH) {
+                  drawH = fitH;
+                  drawW = fitH / aspect;
+               }
+               var x = margin + (fitW - drawW) / 2;
+               var y = margin + (fitH - drawH) / 2;
+               pdf.addImage(imgData, 'JPEG', x, y, drawW, drawH);
+               pdf.save('farmer-application.pdf');
+               restore();
+            }).catch(function () {
+               restore();
+            });
+         });
+      </script>
       <script>
          (function () {
             var dateInputs = document.querySelectorAll('input[type="date"]');
